@@ -1,0 +1,21 @@
+server_id: ""
+timezone: ""
+default_language: ""
+logformat: '[%(levelname)s] %(asctime)s - %(message)s | at %(funcName)s:%(lineno)s (%(pathname)s)'
+secret_key: "secret"
+token_salt: "salt"
+db:
+  redis:
+    hostname: ""
+    port: ""
+  rdb:
+    master:
+      username: ""
+      password: ""
+      address: ""
+      hostname: ""
+    replica:
+      username: ""
+      password: ""
+      address: ""
+      hostname: ""
