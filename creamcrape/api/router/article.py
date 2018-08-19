@@ -6,6 +6,25 @@ from creamcrape.logic.article import create as article_create, get as article_ge
 article_app = Blueprint('article', __name__)
 
 
+@article_app.route('/<api_version>/articles', methods=['GET'])
+def get_articles_by_category(api_version: str) -> tuple:
+    """
+    get article by category
+
+    :param api_version: api version for client control
+    :return: response tuple
+    """
+    try:
+        if 'category' in request.args:
+            category = str(request.args.get('category'))
+        else:
+            category = str(0)
+        result = article_get.get_latest_articles(category_id=category)
+        return pack(result), 200
+    except ValueError:
+        current_app.abort(status_code.bad_request)
+
+
 @article_app.route('/<api_version>/articles/<article_hash>', methods=['GET'])
 def get_article(api_version: str, article_hash: str) -> tuple:
     """
