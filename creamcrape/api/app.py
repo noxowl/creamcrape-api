@@ -65,6 +65,12 @@ def set_user():
         current_app.abort(500)
 
 
+@app.after_request
+def add_cors_header(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
+
 with app.app_context():
     if 'VERSION' not in app.config:
         from creamcrape.cli import initialize_app
